@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Form Validation</title>
+</head>
+<body>
+
+<h3>Registration Form</h3>
+
+<form onsubmit="return validateForm()">
+    Name:
+    <input type="text" id="name"><br><br>
+
+    Email:
+    <input type="text" id="email"><br><br>
+
+    Password:
+    <input type="password" id="password"><br><br>
+
+    Phone Number:
+    <input type="text" id="phone"><br><br>
+
+    Date of Birth:
+    <input type="date" id="dob"><br><br>
+
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+function validateForm() {
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let phone = document.getElementById("phone").value;
+
+    let namePattern = /^[A-Za-z]{3,}$/;
+    let emailPattern = /^[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+    let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+    let phonePattern = /^[0-9]{10}$/;
+
+    if (!namePattern.test(name)) {
+        alert("Name must contain at least 3 alphabets only");
+        return false;
+    }
+
+    if (!emailPattern.test(email)) {
+        alert("Invalid email format");
+        return false;
+    }
+
+    if (!passwordPattern.test(password)) {
+        alert("Password must be strong");
+        return false;
+    }
+
+    if (!phonePattern.test(phone)) {
+        alert("Phone number must be exactly 10 digits");
+        return false;
+    }
+
+    alert("Form submitted successfully");
+    return true;
+}
+</script>
+
+</body>
+</html>
